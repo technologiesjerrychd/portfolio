@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Certified Ethical Hacker (CEH)",
+    "provider": "EC-Council",
+    "date": "2023",
+    "description": "Advanced cybersecurity training focused on ethical hacking and penetration testing"
+  },
+  {
+    "id": "2",
+    "name": "DevOps Engineering Course",
+    "provider": "Udemy",
+    "date": "2022",
+    "description": "Comprehensive DevOps training covering CI/CD, Docker, Kubernetes, and cloud platforms"
+  },
+  {
+    "id": "3",
+    "name": "AWS Solutions Architect Training",
+    "provider": "AWS Training",
+    "date": "2024",
+    "description": "In-depth training on AWS services, architecture patterns, and best practices"
+  }
+]

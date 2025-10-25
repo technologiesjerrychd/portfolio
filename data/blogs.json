@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "title": "Getting Started with Docker",
+    "excerpt": "Learn the fundamentals of containerization and how to get started with Docker for your development workflow. This comprehensive guide covers everything from installation to deployment.",
+    "image": "/images/blog/docker.png",
+    "category": "DevOps",
+    "date": "Jan 15, 2024",
+    "readTime": "5 min read",
+    "slug": "getting-started-with-docker",
+    "content": "Full blog content here..."
+  },
+  {
+    "id": "2",
+    "title": "Kubernetes Best Practices for Production",
+    "excerpt": "Essential tips and strategies for running Kubernetes in production environments. Learn about resource management, security, and monitoring.",
+    "image": "/images/blog/kubernetes.png",
+    "category": "Cloud",
+    "date": "Dec 10, 2023",
+    "readTime": "8 min read",
+    "slug": "kubernetes-best-practices",
+    "content": "Full blog content here..."
+  }
+]

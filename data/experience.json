@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "title": "Senior DevOps Engineer",
+    "company": "Tech Innovations Inc",
+    "duration": "2022 - Present",
+    "description": [
+      "Led cloud infrastructure migration to AWS, reducing operational costs by 40%",
+      "Implemented CI/CD pipelines using Jenkins and GitLab, reducing deployment time by 60%",
+      "Designed and deployed Kubernetes clusters for microservices architecture"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Cloud Engineer",
+    "company": "Cloud Solutions Corp",
+    "duration": "2020 - 2022",
+    "description": [
+      "Managed multi-cloud environments (AWS, Azure, GCP)",
+      "Automated infrastructure provisioning with Terraform and CloudFormation",
+      "Implemented monitoring solutions using Datadog and Grafana"
+    ]
+  },
+  {
+    "id": "3",
+    "title": "DevOps Engineer",
+    "company": "Startup Labs",
+    "duration": "2018 - 2020",
+    "description": [
+      "Built CI/CD pipelines from scratch using Jenkins and Docker",
+      "Implemented containerization strategy across development teams",
+      "Automated deployment processes reducing manual effort by 80%"
+    ]
+  }
+]

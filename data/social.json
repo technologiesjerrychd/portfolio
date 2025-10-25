@@ -1,0 +1,8 @@
+[
+  { "id": "1", "name": "GitHub", "url": "https://github.com/gouravarora", "icon": "Github" },
+  { "id": "2", "name": "LinkedIn", "url": "https://linkedin.com/in/gouravarora", "icon": "Linkedin" },
+  { "id": "3", "name": "Facebook", "url": "https://facebook.com/gouravarora", "icon": "Facebook" },
+  { "id": "4", "name": "Twitter", "url": "https://twitter.com/gouravarora", "icon": "Twitter" },
+  { "id": "5", "name": "Skype", "url": "skype:gouravarora?chat", "icon": "MessageCircle" },
+  { "id": "6", "name": "Instagram", "url": "https://instagram.com/gouravarora", "icon": "Instagram" }
+]

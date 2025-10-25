@@ -1,0 +1,19 @@
+[
+  {
+    "id": "1",
+    "title": "Portfolio Website",
+    "description": "A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS featuring dark mode and smooth animations",
+    "image": "/images/projects/portfolio.png",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    "liveUrl": "https://gouravarora.dev",
+    "githubUrl": "https://github.com/gouravarora/portfolio"
+  },
+  {
+    "id": "2",
+    "title": "Cloud Automation Platform",
+    "description": "Automated infrastructure provisioning and deployment platform using Terraform, Ansible, and AWS services",
+    "image": "/images/projects/cloud-automation.png",
+    "technologies": ["AWS", "Terraform", "Ansible", "Python", "Docker"],
+    "githubUrl": "https://github.com/gouravarora/cloud-automation"
+  }
+]
