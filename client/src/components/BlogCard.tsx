@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock } from "lucide-react";
+import { useLocation } from "wouter";
 
 interface BlogCardProps {
   title: string;
@@ -22,6 +23,8 @@ export default function BlogCard({
   readTime,
   slug,
 }: BlogCardProps) {
+  const [, setLocation] = useLocation();
+
   return (
     <Card className="overflow-hidden hover-elevate transition-all duration-300">
       <div className="aspect-video overflow-hidden">
@@ -50,7 +53,7 @@ export default function BlogCard({
         <Button
           size="sm"
           variant="outline"
-          onClick={() => console.log(`Navigate to blog: ${slug}`)}
+          onClick={() => setLocation(`/blog/${slug}`)}
           data-testid={`button-read-blog-${slug}`}
         >
           Read More

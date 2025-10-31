@@ -17,6 +17,8 @@ import type {
   InsertSocialLink,
   ContactInfo,
   ProfileInfo,
+  Course,
+  InsertCourse,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -79,6 +81,13 @@ export interface IStorage {
   // Profile Info
   getProfileInfo(): Promise<ProfileInfo>;
   updateProfileInfo(info: Partial<ProfileInfo>): Promise<ProfileInfo>;
+
+  // Courses
+  getCourses(): Promise<Course[]>;
+  getCourse(id: string): Promise<Course | undefined>;
+  createCourse(course: InsertCourse): Promise<Course>;
+  updateCourse(id: string, course: Partial<InsertCourse>): Promise<Course | undefined>;
+  deleteCourse(id: string): Promise<boolean>;
 }
 
 export class FileStorage implements IStorage {
@@ -358,6 +367,41 @@ export class FileStorage implements IStorage {
     const updated = { ...current, ...info };
     await this.writeJSON("profile.json", updated);
     return updated;
+  }
+
+  // Courses
+  async getCourses(): Promise<Course[]> {
+    return this.readJSON<Course[]>("courses.json");
+  }
+
+  async getCourse(id: string): Promise<Course | undefined> {
+    const courses = await this.getCourses();
+    return courses.find((c) => c.id === id);
+  }
+
+  async createCourse(course: InsertCourse): Promise<Course> {
+    const courses = await this.getCourses();
+    const newCourse: Course = { ...course, id: randomUUID() };
+    courses.push(newCourse);
+    await this.writeJSON("courses.json", courses);
+    return newCourse;
+  }
+
+  async updateCourse(id: string, course: Partial<InsertCourse>): Promise<Course | undefined> {
+    const courses = await this.getCourses();
+    const index = courses.findIndex((c) => c.id === id);
+    if (index === -1) return undefined;
+    courses[index] = { ...courses[index], ...course };
+    await this.writeJSON("courses.json", courses);
+    return courses[index];
+  }
+
+  async deleteCourse(id: string): Promise<boolean> {
+    const courses = await this.getCourses();
+    const filtered = courses.filter((c) => c.id !== id);
+    if (filtered.length === courses.length) return false;
+    await this.writeJSON("courses.json", filtered);
+    return true;
   }
 }
 

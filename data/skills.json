@@ -1,22 +1,102 @@
 [
-  { "id": "1", "name": "AWS", "category": "Cloud Platforms" },
-  { "id": "2", "name": "Azure", "category": "Cloud Platforms" },
-  { "id": "3", "name": "Google Cloud", "category": "Cloud Platforms" },
-  { "id": "4", "name": "Docker", "category": "DevOps Tools" },
-  { "id": "5", "name": "Kubernetes", "category": "DevOps Tools" },
-  { "id": "6", "name": "Jenkins", "category": "CI/CD" },
-  { "id": "7", "name": "GitLab CI", "category": "CI/CD" },
-  { "id": "8", "name": "GitHub Actions", "category": "CI/CD" },
-  { "id": "9", "name": "Terraform", "category": "Infrastructure as Code" },
-  { "id": "10", "name": "Ansible", "category": "Infrastructure as Code" },
-  { "id": "11", "name": "CloudFormation", "category": "Infrastructure as Code" },
-  { "id": "12", "name": "Datadog", "category": "Observability" },
-  { "id": "13", "name": "Grafana", "category": "Observability" },
-  { "id": "14", "name": "ELK Stack", "category": "Observability" },
-  { "id": "15", "name": "Python", "category": "Programming" },
-  { "id": "16", "name": "Bash", "category": "Programming" },
-  { "id": "17", "name": "Go", "category": "Programming" },
-  { "id": "18", "name": "Penetration Testing", "category": "Security" },
-  { "id": "19", "name": "SIEM", "category": "Security" },
-  { "id": "20", "name": "Network Security", "category": "Security" }
+  {
+    "id": "1",
+    "name": "AWS",
+    "category": "Cloud Platforms"
+  },
+  {
+    "id": "2",
+    "name": "Azure",
+    "category": "Cloud Platforms"
+  },
+  {
+    "id": "3",
+    "name": "Google Cloud",
+    "category": "Cloud Platforms"
+  },
+  {
+    "id": "4",
+    "name": "Docker",
+    "category": "DevOps Tools"
+  },
+  {
+    "id": "5",
+    "name": "Kubernetes",
+    "category": "DevOps Tools"
+  },
+  {
+    "id": "6",
+    "name": "Jenkins",
+    "category": "CI/CD"
+  },
+  {
+    "id": "7",
+    "name": "GitLab CI",
+    "category": "CI/CD"
+  },
+  {
+    "id": "8",
+    "name": "GitHub Actions",
+    "category": "CI/CD"
+  },
+  {
+    "id": "9",
+    "name": "Terraform",
+    "category": "Infrastructure as Code"
+  },
+  {
+    "id": "10",
+    "name": "Ansible",
+    "category": "Infrastructure as Code"
+  },
+  {
+    "id": "11",
+    "name": "CloudFormation",
+    "category": "Infrastructure as Code"
+  },
+  {
+    "id": "12",
+    "name": "Datadog",
+    "category": "Observability"
+  },
+  {
+    "id": "13",
+    "name": "Grafana",
+    "category": "Observability"
+  },
+  {
+    "id": "14",
+    "name": "ELK Stack",
+    "category": "Observability"
+  },
+  {
+    "id": "15",
+    "name": "Python",
+    "category": "Programming"
+  },
+  {
+    "id": "16",
+    "name": "Bash",
+    "category": "Programming"
+  },
+  {
+    "id": "17",
+    "name": "Go",
+    "category": "Programming"
+  },
+  {
+    "id": "18",
+    "name": "Penetration Testing",
+    "category": "Security"
+  },
+  {
+    "id": "19",
+    "name": "SIEM",
+    "category": "Security"
+  },
+  {
+    "id": "20",
+    "name": "Network Security",
+    "category": "Security"
+  }
 ]

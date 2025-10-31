@@ -1,0 +1,70 @@
+[
+  {
+    "id": "1",
+    "name": "AWS Cloud Practitioner & Solutions Architect",
+    "category": "Cloud Computing",
+    "description": "Master AWS fundamentals and learn to design scalable, secure cloud solutions. Perfect for beginners and professionals looking to get AWS certified.",
+    "duration": "8 weeks",
+    "level": "Beginner to Intermediate",
+    "topics": [
+      "AWS Core Services (EC2, S3, RDS, Lambda)",
+      "Cloud Architecture & Best Practices",
+      "Security & Identity Management (IAM)",
+      "Networking (VPC, Route 53)",
+      "Cost Optimization Strategies",
+      "Exam Preparation Tips"
+    ],
+    "price": "Contact for pricing"
+  },
+  {
+    "id": "2",
+    "name": "Microsoft Azure Fundamentals & Administration",
+    "category": "Cloud Computing",
+    "description": "Comprehensive Azure training covering cloud fundamentals, resource management, and Azure administration essentials.",
+    "duration": "6 weeks",
+    "level": "Beginner to Intermediate",
+    "topics": [
+      "Azure Core Concepts & Services",
+      "Virtual Machines & Networking",
+      "Storage Solutions",
+      "Azure Active Directory",
+      "Monitoring & Management",
+      "Azure DevOps Integration"
+    ],
+    "price": "Contact for pricing"
+  },
+  {
+    "id": "3",
+    "name": "DevOps Engineering Bootcamp",
+    "category": "DevOps",
+    "description": "End-to-end DevOps training covering CI/CD, containerization, orchestration, and automation. Hands-on labs with real-world projects.",
+    "duration": "10 weeks",
+    "level": "Intermediate to Advanced",
+    "topics": [
+      "Git & Version Control",
+      "CI/CD Pipelines (Jenkins, GitLab CI)",
+      "Docker & Container Management",
+      "Kubernetes Orchestration",
+      "Infrastructure as Code (Terraform)",
+      "Monitoring & Logging (Prometheus, ELK)"
+    ],
+    "price": "Contact for pricing"
+  },
+  {
+    "id": "4",
+    "name": "Ethical Hacking & Penetration Testing",
+    "category": "Cybersecurity",
+    "description": "Learn ethical hacking techniques, penetration testing methodologies, and how to identify and fix security vulnerabilities.",
+    "duration": "12 weeks",
+    "level": "Intermediate to Advanced",
+    "topics": [
+      "Information Gathering & Reconnaissance",
+      "Network Scanning & Enumeration",
+      "Vulnerability Assessment",
+      "Web Application Security",
+      "Password Cracking & Social Engineering",
+      "Report Writing & Remediation"
+    ],
+    "price": "Contact for pricing"
+  }
+]

@@ -532,15 +532,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
       });
 
+      const courseInfo = data.course && data.course !== 'none' 
+        ? `<p><strong>Interested Course:</strong> ${data.course}</p>` 
+        : '';
+
       await transporter.sendMail({
         from: data.email,
         to: "gourav.arora@example.com",
         subject: `Portfolio Contact: ${data.subject}`,
-        text: `From: ${data.name} (${data.email})\n\n${data.message}`,
+        text: `From: ${data.name} (${data.email})\n${data.course ? `Course: ${data.course}\n` : ''}\n${data.message}`,
         html: `
           <h3>New Contact Form Submission</h3>
           <p><strong>From:</strong> ${data.name}</p>
           <p><strong>Email:</strong> ${data.email}</p>
+          ${courseInfo}
           <p><strong>Subject:</strong> ${data.subject}</p>
           <p><strong>Message:</strong></p>
           <p>${data.message}</p>
@@ -551,6 +556,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Email error:", error);
       res.status(500).json({ error: "Failed to send email" });
+    }
+  });
+
+  // Courses Routes
+  app.get("/api/courses", async (req, res) => {
+    try {
+      const courses = await storage.getCourses();
+      res.json(courses);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch courses" });
+    }
+  });
+
+  app.post("/api/courses", requireAuth, async (req, res) => {
+    try {
+      const data = req.body;
+      const course = await storage.createCourse(data);
+      res.json(course);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid course data" });
+    }
+  });
+
+  app.put("/api/courses/:id", requireAuth, async (req, res) => {
+    try {
+      const course = await storage.updateCourse(req.params.id, req.body);
+      if (!course) {
+        return res.status(404).json({ error: "Course not found" });
+      }
+      res.json(course);
+    } catch (error) {
+      res.status(400).json({ error: "Failed to update course" });
+    }
+  });
+
+  app.delete("/api/courses/:id", requireAuth, async (req, res) => {
+    try {
+      const deleted = await storage.deleteCourse(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Course not found" });
+      }
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete course" });
     }
   });
 

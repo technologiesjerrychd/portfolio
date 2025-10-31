@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Facebook, Twitter, Instagram, MessageCircle, Mail, Globe } from "lucide-react";
-import profilePhoto from "@assets/generated_images/Professional_DevOps_engineer_headshot_1bce13c1.png";
-import heroBackground from "@assets/generated_images/Technical_DevOps_hero_background_53337150.png";
 import type { SocialLink, ProfileInfo } from "@shared/schema";
 
 const iconMap: Record<string, any> = {
@@ -40,7 +38,7 @@ export default function Hero() {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url(${profile?.heroBackground || heroBackground})`,
+          backgroundImage: `url(${profile?.heroBackground || '/images/profile/hero-bg.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -103,7 +101,7 @@ export default function Hero() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-600/20 rounded-full blur-3xl"></div>
               <img
-                src={profile?.profilePhoto || profilePhoto}
+                src={profile?.profilePhoto || '/images/profile/profile.png'}
                 alt={profile?.name || "Gourav Arora"}
                 className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-primary/20 shadow-2xl"
                 data-testid="img-profile"

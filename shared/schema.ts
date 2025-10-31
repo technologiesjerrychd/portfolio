@@ -117,9 +117,26 @@ export const contactFormSchema = z.object({
   email: z.string().email(),
   subject: z.string(),
   message: z.string(),
+  course: z.string().optional(),
 });
 
 export type ContactForm = z.infer<typeof contactFormSchema>;
+
+// Course Schema (Training courses offered)
+export const courseSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  category: z.string(),
+  description: z.string(),
+  duration: z.string(),
+  level: z.string(),
+  topics: z.array(z.string()),
+  price: z.string().optional(),
+});
+
+export const insertCourseSchema = courseSchema.omit({ id: true });
+export type Course = z.infer<typeof courseSchema>;
+export type InsertCourse = z.infer<typeof insertCourseSchema>;
 
 // Profile Info Schema
 export const profileInfoSchema = z.object({
