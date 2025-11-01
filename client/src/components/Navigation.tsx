@@ -1,25 +1,19 @@
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Courses", href: "#courses" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Experience", href: "#experience" },
-  { name: "Training", href: "#training" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contact", href: "#contact" },
-];
+import type { NavMenuItem } from "@shared/schema";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
   const { theme, toggleTheme } = useTheme();
+
+  const { data: navLinks = [] } = useQuery<NavMenuItem[]>({
+    queryKey: ["/api/nav-menu"],
+  });
 
   useEffect(() => {
     const handleScroll = () => {

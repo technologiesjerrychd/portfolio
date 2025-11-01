@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import WhatIDoCard from "@/components/WhatIDoCard";
@@ -9,10 +8,9 @@ import CertificationCard from "@/components/CertificationCard";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import TrainingCard from "@/components/TrainingCard";
 import BlogCard from "@/components/BlogCard";
-import CourseCard from "@/components/CourseCard";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import type { Skill, Project, Certification, Experience, Training, Blog, Course } from "@shared/schema";
+import type { Skill, Project, Certification, Experience, Training, Blog } from "@shared/schema";
 
 import devopsIcon from "@assets/generated_images/DevOps_automation_icon_illustration_bcf93f49.png";
 import cloudIcon from "@assets/generated_images/Cloud_infrastructure_icon_illustration_6659a876.png";
@@ -47,8 +45,6 @@ const whatIDo = [
 ];
 
 export default function Portfolio() {
-  const [selectedCourse, setSelectedCourse] = useState<string | undefined>(undefined);
-
   const { data: skills = [], isLoading: skillsLoading } = useQuery<Skill[]>({
     queryKey: ["/api/skills"],
   });
@@ -72,18 +68,6 @@ export default function Portfolio() {
   const { data: blogs = [], isLoading: blogsLoading } = useQuery<Blog[]>({
     queryKey: ["/api/blogs"],
   });
-
-  const { data: courses = [], isLoading: coursesLoading } = useQuery<Course[]>({
-    queryKey: ["/api/courses"],
-  });
-
-  const handleEnrollClick = (courseName: string) => {
-    setSelectedCourse(courseName);
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="min-h-screen">
@@ -128,35 +112,6 @@ export default function Portfolio() {
                   technologies={project.technologies}
                   liveUrl={project.liveUrl}
                   githubUrl={project.githubUrl}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      <section id="courses" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-center">Training Courses Offered</h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Professional training programs in AWS, Azure, DevOps, and Ethical Hacking. 
-            Learn from industry experience with hands-on labs and real-world projects.
-          </p>
-          {coursesLoading ? (
-            <div className="text-center">Loading courses...</div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-8">
-              {courses.map((course) => (
-                <CourseCard
-                  key={course.id}
-                  name={course.name}
-                  category={course.category}
-                  description={course.description}
-                  duration={course.duration}
-                  level={course.level}
-                  topics={course.topics}
-                  price={course.price}
-                  onEnroll={() => handleEnrollClick(course.name)}
                 />
               ))}
             </div>
@@ -236,7 +191,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <ContactForm selectedCourse={selectedCourse} />
+      <ContactForm />
       <Footer />
     </div>
   );

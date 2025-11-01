@@ -17,8 +17,9 @@ import type {
   InsertSocialLink,
   ContactInfo,
   ProfileInfo,
-  Course,
-  InsertCourse,
+  NavMenuItem,
+  InsertNavMenuItem,
+  SMTPConfig,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -82,12 +83,16 @@ export interface IStorage {
   getProfileInfo(): Promise<ProfileInfo>;
   updateProfileInfo(info: Partial<ProfileInfo>): Promise<ProfileInfo>;
 
-  // Courses
-  getCourses(): Promise<Course[]>;
-  getCourse(id: string): Promise<Course | undefined>;
-  createCourse(course: InsertCourse): Promise<Course>;
-  updateCourse(id: string, course: Partial<InsertCourse>): Promise<Course | undefined>;
-  deleteCourse(id: string): Promise<boolean>;
+  // Navigation Menu Items
+  getNavMenuItems(): Promise<NavMenuItem[]>;
+  getNavMenuItem(id: string): Promise<NavMenuItem | undefined>;
+  createNavMenuItem(item: InsertNavMenuItem): Promise<NavMenuItem>;
+  updateNavMenuItem(id: string, item: Partial<InsertNavMenuItem>): Promise<NavMenuItem | undefined>;
+  deleteNavMenuItem(id: string): Promise<boolean>;
+
+  // SMTP Configuration
+  getSMTPConfig(): Promise<SMTPConfig | null>;
+  updateSMTPConfig(config: SMTPConfig): Promise<SMTPConfig>;
 }
 
 export class FileStorage implements IStorage {
@@ -369,39 +374,55 @@ export class FileStorage implements IStorage {
     return updated;
   }
 
-  // Courses
-  async getCourses(): Promise<Course[]> {
-    return this.readJSON<Course[]>("courses.json");
+  // Navigation Menu Items
+  async getNavMenuItems(): Promise<NavMenuItem[]> {
+    return this.readJSON<NavMenuItem[]>("nav-menu.json");
   }
 
-  async getCourse(id: string): Promise<Course | undefined> {
-    const courses = await this.getCourses();
-    return courses.find((c) => c.id === id);
+  async getNavMenuItem(id: string): Promise<NavMenuItem | undefined> {
+    const items = await this.getNavMenuItems();
+    return items.find((item) => item.id === id);
   }
 
-  async createCourse(course: InsertCourse): Promise<Course> {
-    const courses = await this.getCourses();
-    const newCourse: Course = { ...course, id: randomUUID() };
-    courses.push(newCourse);
-    await this.writeJSON("courses.json", courses);
-    return newCourse;
+  async createNavMenuItem(item: InsertNavMenuItem): Promise<NavMenuItem> {
+    const items = await this.getNavMenuItems();
+    const newItem: NavMenuItem = { ...item, id: randomUUID() };
+    items.push(newItem);
+    items.sort((a, b) => a.order - b.order);
+    await this.writeJSON("nav-menu.json", items);
+    return newItem;
   }
 
-  async updateCourse(id: string, course: Partial<InsertCourse>): Promise<Course | undefined> {
-    const courses = await this.getCourses();
-    const index = courses.findIndex((c) => c.id === id);
+  async updateNavMenuItem(id: string, item: Partial<InsertNavMenuItem>): Promise<NavMenuItem | undefined> {
+    const items = await this.getNavMenuItems();
+    const index = items.findIndex((i) => i.id === id);
     if (index === -1) return undefined;
-    courses[index] = { ...courses[index], ...course };
-    await this.writeJSON("courses.json", courses);
-    return courses[index];
+    items[index] = { ...items[index], ...item };
+    items.sort((a, b) => a.order - b.order);
+    await this.writeJSON("nav-menu.json", items);
+    return items[index];
   }
 
-  async deleteCourse(id: string): Promise<boolean> {
-    const courses = await this.getCourses();
-    const filtered = courses.filter((c) => c.id !== id);
-    if (filtered.length === courses.length) return false;
-    await this.writeJSON("courses.json", filtered);
+  async deleteNavMenuItem(id: string): Promise<boolean> {
+    const items = await this.getNavMenuItems();
+    const filtered = items.filter((i) => i.id !== id);
+    if (filtered.length === items.length) return false;
+    await this.writeJSON("nav-menu.json", filtered);
     return true;
+  }
+
+  // SMTP Configuration
+  async getSMTPConfig(): Promise<SMTPConfig | null> {
+    try {
+      return await this.readJSON<SMTPConfig>("smtp-config.json");
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async updateSMTPConfig(config: SMTPConfig): Promise<SMTPConfig> {
+    await this.writeJSON("smtp-config.json", config);
+    return config;
   }
 }
 

@@ -1,0 +1,9 @@
+{
+  "host": "smtp.gmail.com",
+  "port": 587,
+  "secure": false,
+  "username": "",
+  "password": "",
+  "fromEmail": "noreply@example.com",
+  "fromName": "Portfolio Contact Form"
+}

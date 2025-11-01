@@ -25,7 +25,9 @@ import {
   Share2, 
   Mail, 
   User,
-  LogOut
+  LogOut,
+  Menu,
+  Server
 } from "lucide-react";
 import SkillsManager from "@/components/admin/SkillsManager";
 import ProjectsManager from "@/components/admin/ProjectsManager";
@@ -36,6 +38,8 @@ import BlogsManager from "@/components/admin/BlogsManager";
 import SocialLinksManager from "@/components/admin/SocialLinksManager";
 import ContactInfoManager from "@/components/admin/ContactInfoManager";
 import ProfileManager from "@/components/admin/ProfileManager";
+import NavigationMenuManager from "@/components/admin/NavigationMenuManager";
+import SMTPConfigManager from "@/components/admin/SMTPConfigManager";
 
 const menuItems = [
   { title: "Skills", icon: Code, section: "skills" },
@@ -47,6 +51,8 @@ const menuItems = [
   { title: "Social Links", icon: Share2, section: "social" },
   { title: "Contact Info", icon: Mail, section: "contact" },
   { title: "Profile", icon: User, section: "profile" },
+  { title: "Navigation Menu", icon: Menu, section: "navigation" },
+  { title: "SMTP Settings", icon: Server, section: "smtp" },
 ];
 
 export default function AdminDashboard() {
@@ -122,6 +128,10 @@ export default function AdminDashboard() {
         return <ContactInfoManager />;
       case "profile":
         return <ProfileManager />;
+      case "navigation":
+        return <NavigationMenuManager />;
+      case "smtp":
+        return <SMTPConfigManager />;
       default:
         return <SkillsManager />;
     }

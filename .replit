@@ -15,10 +15,10 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Portfolio Website"
+args = "Start application"
 
 [[workflows.workflow]]
-name = "Portfolio Website"
+name = "Start application"
 author = "agent"
 
 [[workflows.workflow.tasks]]
@@ -35,5 +35,5 @@ externalPort = 80
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["npm", "start"]
+run = ["npm", "run", "start"]
 build = ["npm", "run", "build"]

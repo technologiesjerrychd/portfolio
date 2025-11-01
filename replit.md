@@ -92,6 +92,7 @@ All content is stored in JSON files in the `/data` directory:
 - `social.json` - Social media links
 - `contact.json` - Contact information
 - `profile.json` - Profile information
+- `nav-menu.json` - Navigation menu items
 
 ## Recent Changes
 **October 25, 2025**:
@@ -110,16 +111,31 @@ All content is stored in JSON files in the `/data` directory:
   - Created BlogDetail page component to display full blog posts
   - Added `/blog/:slug` route to App.tsx
   - Updated BlogCard to navigate to blog detail page
-- **Added Training Courses Feature**:
-  - Created Course schema and data structure
-  - Built courses API endpoints (GET, POST, PUT, DELETE)
-  - Created CourseCard component to display course information
-  - Added "Training Courses Offered" section to portfolio
-  - Integrated course selection in contact form
-  - Clients can now browse courses (AWS, Azure, DevOps, Ethical Hacking)
-  - "Enroll Now" button scrolls to contact form with pre-filled course info
-  - Contact form includes course dropdown for training inquiries
-  - Added "Courses" link to navigation menu
+
+**October 31, 2025**:
+- **Removed Training Courses Offered Section**:
+  - Removed "Courses" from navigation menu
+  - Removed courses offered section from portfolio homepage
+  - Removed course-related API routes and storage methods
+  - Updated contact form to remove course selection dropdown
+  - Cleaned up all course-related schemas and types
+- **Added Dynamic Navigation Menu Management**:
+  - Created navigation menu schema and storage interface
+  - Added navigation menu CRUD API routes (`/api/nav-menu`)
+  - Built NavigationMenuManager admin component for managing menu items
+  - Updated Navigation component to fetch menu items dynamically from backend
+  - Admin can now add, edit, delete, and reorder navigation menu items
+  - Navigation menu is now stored in `nav-menu.json` and editable via admin panel
+- **Added SMTP Configuration Management**:
+  - Created SMTP configuration schema with full validation (host, port, secure, username, password, fromEmail, fromName)
+  - Added SMTP configuration storage methods in backend
+  - Created secure API routes for SMTP configuration (GET/PUT) with admin authentication
+  - Built SMTPConfigManager admin component using react-hook-form + zod validation pattern
+  - Updated contact form email handler to use configured SMTP settings
+  - Admin can now configure email server settings through the admin dashboard
+  - Contact form submissions are sent via configured SMTP server
+  - SMTP credentials stored securely in `data/smtp-config.json` (only accessible to authenticated admins)
+  - Added helpful setup guides for Gmail and Outlook in the admin UI
 
 ## Design Guidelines
 Detailed design guidelines are documented in `design_guidelines.md`, covering:

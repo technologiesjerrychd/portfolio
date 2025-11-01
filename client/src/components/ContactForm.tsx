@@ -5,23 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import type { ContactInfo, Course } from "@shared/schema";
+import type { ContactInfo } from "@shared/schema";
 
-interface ContactFormProps {
-  selectedCourse?: string;
-}
-
-export default function ContactForm({ selectedCourse }: ContactFormProps) {
+export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: selectedCourse ? `Training Inquiry: ${selectedCourse}` : "",
-    message: selectedCourse ? `I am interested in enrolling in the "${selectedCourse}" training course. Please provide more details.` : "",
-    course: selectedCourse || "",
+    subject: "",
+    message: "",
   });
   const { toast } = useToast();
 
@@ -29,19 +23,15 @@ export default function ContactForm({ selectedCourse }: ContactFormProps) {
     queryKey: ["/api/contact-info"],
   });
 
-  const { data: courses = [] } = useQuery<Course[]>({
-    queryKey: ["/api/courses"],
-  });
-
   const submitMutation = useMutation({
-    mutationFn: (data: { name: string; email: string; subject: string; message: string; course?: string }) =>
+    mutationFn: (data: { name: string; email: string; subject: string; message: string }) =>
       apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      setFormData({ name: "", email: "", subject: "", message: "", course: "" });
+      setFormData({ name: "", email: "", subject: "", message: "" });
     },
     onError: () => {
       toast({
@@ -86,32 +76,6 @@ export default function ContactForm({ selectedCourse }: ContactFormProps) {
                   required
                   data-testid="input-email"
                 />
-              </div>
-              <div>
-                <Label htmlFor="course">Interested in Training? (Optional)</Label>
-                <Select
-                  value={formData.course}
-                  onValueChange={(value) => {
-                    setFormData({ 
-                      ...formData, 
-                      course: value,
-                      subject: value ? `Training Inquiry: ${value}` : formData.subject,
-                      message: value ? `I am interested in enrolling in the "${value}" training course. Please provide more details.` : formData.message
-                    });
-                  }}
-                >
-                  <SelectTrigger id="course" data-testid="select-course">
-                    <SelectValue placeholder="Select a course (optional)" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="none">No specific course</SelectItem>
-                    {courses.map((course) => (
-                      <SelectItem key={course.id} value={course.name}>
-                        {course.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
               </div>
               <div>
                 <Label htmlFor="subject">Subject</Label>

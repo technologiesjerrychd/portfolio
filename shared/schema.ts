@@ -117,26 +117,9 @@ export const contactFormSchema = z.object({
   email: z.string().email(),
   subject: z.string(),
   message: z.string(),
-  course: z.string().optional(),
 });
 
 export type ContactForm = z.infer<typeof contactFormSchema>;
-
-// Course Schema (Training courses offered)
-export const courseSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  category: z.string(),
-  description: z.string(),
-  duration: z.string(),
-  level: z.string(),
-  topics: z.array(z.string()),
-  price: z.string().optional(),
-});
-
-export const insertCourseSchema = courseSchema.omit({ id: true });
-export type Course = z.infer<typeof courseSchema>;
-export type InsertCourse = z.infer<typeof insertCourseSchema>;
 
 // Profile Info Schema
 export const profileInfoSchema = z.object({
@@ -148,3 +131,28 @@ export const profileInfoSchema = z.object({
 });
 
 export type ProfileInfo = z.infer<typeof profileInfoSchema>;
+
+// Navigation Menu Schema
+export const navMenuItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  href: z.string(),
+  order: z.number(),
+});
+
+export const insertNavMenuItemSchema = navMenuItemSchema.omit({ id: true });
+export type NavMenuItem = z.infer<typeof navMenuItemSchema>;
+export type InsertNavMenuItem = z.infer<typeof insertNavMenuItemSchema>;
+
+// SMTP Configuration Schema
+export const smtpConfigSchema = z.object({
+  host: z.string().min(1, "SMTP host is required"),
+  port: z.number().min(1).max(65535, "Port must be between 1 and 65535"),
+  secure: z.boolean(), // true for SSL/TLS (port 465), false for STARTTLS (port 587)
+  username: z.string().min(1, "Username is required"),
+  password: z.string().min(1, "Password is required"),
+  fromEmail: z.string().email("Valid email address is required"),
+  fromName: z.string().min(1, "Sender name is required"),
+});
+
+export type SMTPConfig = z.infer<typeof smtpConfigSchema>;
